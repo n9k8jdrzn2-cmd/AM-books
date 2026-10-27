@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AM BOOKS — Digital Knowledge</title>
+<style>
+:root {
+  --site-primary: #7C3AED;
+  --site-secondary: #241044;
+  --site-background: #0D0817;
+  --site-on-primary: #FFFFFF;
+  --site-on-secondary: #F4EFFF;
+  --site-on-background: #F8F5FF;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--site-font-body); color: var(--site-on-background); background: var(--site-background); }
+.app { min-height: 100vh; background: light-dark(#0D0817, #0D0817); color: #F8F5FF; overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1120px; margin: auto; padding: 0 24px; }
+nav { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:24px 0; border-bottom:1px solid #30213f; }
+.logo { display:flex; align-items:center; gap:11px; font-weight:900; letter-spacing:.04em; font-size:1.15rem; }
+.logo-mark { display:grid; place-items:center; width:42px; height:42px; border-radius:14px; background:linear-gradient(135deg,#A78BFA,#6D28D9); color:white; box-shadow:0 0 30px #7c3aed44; }
+.navlinks { display:flex; gap:24px; align-items:center; color:#c7badc; font-size:.93rem; }
+.pill { border:1px solid #7253a1; background:#26143d; padding:11px 16px; border-radius:999px; color:white; font-weight:700; cursor:pointer; }
+.hero { position:relative; display:grid; grid-template-columns:1.08fr .92fr; align-items:center; gap:44px; padding:82px 0 74px; }
+.eyebrow { display:inline-flex; align-items:center; gap:8px; border:1px solid #503278; background:#1b102a; color:#d7c4ff; border-radius:999px; padding:8px 13px; font-size:.8rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+h1 { font-family:var(--site-font-heading); font-size:clamp(2.8rem,6vw,5.4rem); line-height:.99; letter-spacing:-.055em; margin:23px 0; }
+.gradient { background:linear-gradient(100deg,#fff 5%,#c4a8ff 53%,#9b6bff 100%); color:transparent; background-clip:text; }
+.hero p { max-width:540px; color:#c7bbd7; font-size:1.08rem; line-height:1.75; }
+.actions { display:flex; flex-wrap:wrap; gap:13px; margin-top:27px; }
+.primary { background:linear-gradient(135deg,#9b6bff,#6d28d9); border:0; box-shadow:0 10px 30px #6d28d944; }
+.note { color:#9c8dad; font-size:.82rem; margin-top:17px; }
+.art { min-height:390px; position:relative; display:grid; place-items:center; }
+.orb { position:absolute; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle,#8b5cf6 0%,#4c1d95 38%,#170b2c 70%); filter:blur(4px); opacity:.62; }
+.book-stack { position:relative; width:min(330px,85%); height:350px; transform:rotate(-5deg); }
+.book { position:absolute; width:220px; height:285px; border:1px solid #9f7aea; border-radius:14px; background:linear-gradient(150deg,#30144e,#130b20 70%); box-shadow:0 25px 55px #0008; padding:25px 22px; }
+.book.back { right:0; top:16px; transform:rotate(10deg); background:linear-gradient(150deg,#46216d,#170c27); }
+.book.front { left:18px; top:35px; display:flex; flex-direction:column; justify-content:space-between; }
+.book .mini { font-size:.68rem; letter-spacing:.18em; color:#c4a8ff; font-weight:800; }
+.book h3 { font-size:2rem; line-height:1.05; margin:16px 0; letter-spacing:-.04em; }
+.book .symbol { font-size:3.6rem; color:#b99aff; }
+.float { position:absolute; border:1px solid #5b3b7d; background:#1b102acc; backdrop-filter:blur(10px); border-radius:15px; padding:12px 15px; color:#eee3ff; box-shadow:0 10px 30px #0005; font-size:.85rem; }
+.float.one { top:35px; right:0; } .float.two { bottom:36px; left:0; }
+section { padding:60px 0; }
+.section-head { display:flex; justify-content:space-between; align-items:end; gap:20px; margin-bottom:26px; }
+h2 { font-size:clamp(1.8rem,3vw,2.5rem); letter-spacing:-.04em; margin:0 0 10px; }
+.section-head p { color:#b8a9ca; margin:0; line-height:1.6; }
+.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.card { border:1px solid #38264c; border-radius:22px; padding:22px; background:linear-gradient(145deg,#1b1029,#120b1c); }
+.cover { height:190px; border-radius:16px; display:flex; flex-direction:column; justify-content:space-between; padding:20px; margin-bottom:19px; overflow:hidden; }
+.cover.ai { background:radial-gradient(circle at 80% 25%,#9d71ff88,transparent 34%),linear-gradient(135deg,#382064,#130b21); }
+.cover.photo { background:radial-gradient(circle at 80% 20%,#ff70e088,transparent 30%),linear-gradient(135deg,#44205f,#120b20); }
+.cover small { color:#d8c4ff; letter-spacing:.13em; font-weight:800; }
+.cover strong { font-size:1.8rem; line-height:1.05; max-width:260px; letter-spacing:-.04em; }
+.card p { color:#bfb1d0; line-height:1.6; min-height:48px; }
+.buyrow { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:20px; }
+.price { font-size:1.45rem; font-weight:900; }
+.buy { background:#7c3aed; border:0; color:white; padding:12px 16px; border-radius:12px; font-weight:800; cursor:pointer; }
+.benefits { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; }
+.benefit { padding:22px; border:1px solid #30213f; border-radius:18px; background:#140d20; }
+.benefit .icon { font-size:1.7rem; }
+.benefit h3 { margin:14px 0 8px; }
+.benefit p { margin:0; color:#b9a9cc; line-height:1.6; font-size:.92rem; }
+footer { border-top:1px solid #30213f; padding:28px 0; color:#a99ab9; font-size:.88rem; }
+.foot { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
+.toast { position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px); opacity:0; pointer-events:none; padding:14px 18px; border-radius:14px; background:#eee5ff; color:#25123d; font-weight:700; box-shadow:0 15px 40px #0008; transition:.25s; max-width:calc(100% - 32px); text-align:center; z-index:5; }
+.toast.show { opacity:1; transform:translate(-50%,0); }
+@media(max-width:760px) {
+ .wrap { padding:0 18px; } .navlinks a:not(.pill) { display:none; }
+ .hero { grid-template-columns:1fr; padding:55px 0 38px; gap:8px; }
+ .art { min-height:350px; } .book-stack { transform:scale(.9) rotate(-5deg); }
+ .grid,.benefits { grid-template-columns:1fr; }
+ .section-head { display:block; } .section-head p { margin-top:10px; }
+}
+</style>
+</head>
+<body>
+<div class="app" data-sites-preview-theme="custom">
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="#home" aria-label="AM BOOKS home"><span class="logo-mark">AM</span><span>AM BOOKS</span></a>
+      <div class="navlinks"><a href="#ebooks">E-books</a><a href="#why">Why AM Books</a><a class="pill" href="#ebooks">Explore library ↗</a></div>
+    </nav>
+    <main id="home">
+      <div class="hero">
+        <div>
+          <span class="eyebrow">✦ Your digital learning space</span>
+          <h1>Learn more.<br><span class="gradient">Create smarter.</span></h1>
+          <p>Practical digital guides for AI tools, ChatGPT and creative photo editing — made for curious beginners who want to learn one step at a time.</p>
+          <div class="actions"><a class="pill primary" href="#ebooks">Explore e-books →</a><a class="pill" href="#why">Discover AM BOOKS</a></div>
+          <div class="note">Instant digital learning • Beginner-friendly • Learn at your pace</div>
+        </div>
+        <div class="art" aria-label="Decorative digital book artwork">
+          <div class="orb"></div>
+          <div class="book-stack">
+            <div class="book back"><div class="mini">AM BOOKS / CREATIVE LAB</div><div class="symbol">✧</div><h3>Make every<br>image shine.</h3><div class="mini">AI PHOTO EDITING</div></div>
+            <div class="book front"><div><div class="mini">AM BOOKS / DIGITAL GUIDE</div><h3>Unlock the<br>power of AI.</h3><div style="color:#c9b4e9;font-size:.9rem">A beginner's guide to smarter tools.</div></div><div class="symbol">⌘✦</div><div class="mini">LEARN • CREATE • GROW</div></div>
+          </div>
+          <div class="float one">✦ AI made approachable</div><div class="float two">▣ Guides for beginners</div>
+        </div>
+      </div>
+      <section id="ebooks">
+        <div class="section-head"><div><h2>Explore our e-books</h2><p>Useful skills, explained in simple steps.</p></div></div>
+        <div class="grid">
+          <article class="card">
+            <div class="cover ai"><small>AM BOOKS • GUIDE 01</small><strong>ChatGPT &<br>AI Tools Starter</strong><span>🤖 ✧</span></div>
+            <h3>ChatGPT & AI Tools Guide</h3>
+            <p>Learn the basics of prompts, useful AI tools and ways to brainstorm, study and create content.</p>
+            <div class="buyrow"><span class="price">₹99</span><button class="buy" onclick="notify('Demo store: connect a payment provider before accepting orders.')">Get the guide ↗</button></div>
+          </article>
+          <article class="card">
+            <div class="cover photo"><small>AM BOOKS • GUIDE 02</small><strong>AI Photo<br>Editing Basics</strong><span>✧ ◈ ✧</span></div>
+            <h3>AI Photo Editing Guide</h3>
+            <p>Explore image prompts, background ideas and beginner-friendly workflows for creative edits.</p>
+            <div class="buyrow"><span class="price">₹99</span><button class="buy" onclick="notify('Demo store: connect a payment provider before accepting orders.')">Get the guide ↗</button></div>
+          </article>
+        </div>
+      </section>
+      <section id="why">
+        <div class="section-head"><div><h2>Why learn with AM BOOKS?</h2><p>Simple guides to help you start without feeling overwhelmed.</p></div></div>
+        <div class="benefits">
+          <div class="benefit"><div class="icon">⚡</div><h3>Easy to follow</h3><p>Clear explanations and beginner-friendly steps.</p></div>
+          <div class="benefit"><div class="icon">✦</div><h3>Practical ideas</h3><p>Learn concepts you can try in your own projects.</p></div>
+          <div class="benefit"><div class="icon">📱</div><h3>Learn anywhere</h3><p>Digital guides designed to read on your phone or computer.</p></div>
+        </div>
+      </section>
+    </main>
+    <footer><div class="foot"><span>© 2026 AM BOOKS · Learn • Create • Grow</span><span>Digital guides for curious minds.</span></div></footer>
+  </div>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+let toastTimer;
+function notify(message) {
+ const el = document.getElementById('toast');
+ el.textContent = message;
+ el.classList.add('show');
+ clearTimeout(toastTimer);
+ toastTimer = setTimeout(() => el.classList.remove('show'), 3600);
+}
+</script>
+</body>
+</html>
